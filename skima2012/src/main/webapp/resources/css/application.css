@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+#registrationRateTable th {
+	background-color: #66FFFF;
+}
+
+#registrationRateTable th, #registrationRateTable td:not(:first-child) {
+	text-align: center;
+}
+
+.table tbody th {
+	background-color: #F5F5F5;
+}
+
+td.paidCss {
+	background-color: #DBFFD1;
+}
+
+.table tbody tr:hover td.paidCss {
+	background-color: #E1FCCE;
+}
+
+.unpaidCss {
+	background-color: #FFFFFF;
+}

@@ -1,0 +1,5 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/mysema/querydsl/querydsl-jpa/2.7.0/querydsl-jpa-2.7.0-apt-one-jar.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Users\det\.m2\repository\com\mysema\querydsl\querydsl-jpa\2.7.0\querydsl-jpa-2.7.0-apt-one-jar.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
+</factorypath>
