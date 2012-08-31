@@ -450,6 +450,83 @@ public class RegistrationInfo implements Serializable {
 	public Double getExchangeRate() {
 		return RegistrationInfo.exchangeRate;
 	}
+	
+	public static List<Map<String, Object>> getBlankLineItemReceipt() {
+		Integer i = 0;
+		List<Map<String, Object>> l = new ArrayList<Map<String, Object>>();
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", 1);
+		map.put("line",  "      " +RegistrationItem.full.toString() + " / After 31 August 2012 On-site rate" );
+		map.put("quantity", null);
+		map.put("amount", "500.00");
+		map.put("totalAmount", null);
+		map.put("checkBox", true);
+		
+		l.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("no", null);
+		map.put("line",  "      " +RegistrationItem.student.toString() + " / After 31 August 2012 On-site rate");
+		map.put("quantity", null);
+		map.put("amount", "300.00");
+		map.put("totalAmount", null);
+		map.put("checkBox", true);
+		
+		l.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("no", null);
+		map.put("line",   "      " +RegistrationItem.participant.toString());
+		map.put("quantity", null);
+		map.put("amount", "200.00");
+		map.put("totalAmount", null);
+		map.put("checkBox", true);
+		
+		l.add(map);
+		
+	
+	
+		map = new HashMap<String, Object>();
+		map.put("no", 2);
+		map.put("line", "Extra Banquet");
+		map.put("quantity", null);
+		map.put("amount", "80.00");
+		map.put("totalAmount", null);
+		map.put("checkBox", false);
+		
+		l.add(map);
+	
+	
+	
+		map = new HashMap<String, Object>();
+		map.put("no", 3);
+		map.put("line", "Extra CD");
+		map.put("quantity", null);
+		map.put("amount", "50.00");
+		map.put("totalAmount", null);
+		map.put("checkBox", false);
+		
+		l.add(map);
+		
+		
+		for(i=6;i<12;i++) {
+			// just fill to 12 line
+			map = new HashMap<String, Object>();
+			map.put("no", null);
+			map.put("line", null);
+			map.put("amount", null);
+			map.put("totalAmount", null);
+			map.put("quantity", null);
+			map.put("checkBox", false);
+			
+			l.add(map);
+		}
+		
+		return l;
+	}
+	
 	public List<Map<String, Object>> getLineItemReceipt() {
 		Integer i = 1;
 		List<Map<String, Object>> l = new ArrayList<Map<String, Object>>();
@@ -458,7 +535,9 @@ public class RegistrationInfo implements Serializable {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("no", i++);
 		map.put("line",  info.getRegistrationItemWebString());
+		map.put("quantity", 1);
 		map.put("amount", nf2decimal.format(info.getRegistrationItemFee()));
+		map.put("totalAmount", nf2decimal.format(info.getRegistrationItemFee()));
 		
 		l.add(map);
 		
@@ -466,32 +545,39 @@ public class RegistrationInfo implements Serializable {
 			map = new HashMap<String, Object>();
 			map.put("no", i++);
 			map.put("line", info.getWorkshopItemWebString());
+			map.put("quantity", 1);
 			if(info.getWorkshopItem() == WorkshopItem.oneDay) {
-				map.put("amount", "FREE");
+				map.put("amount", "");
+				map.put("totalAmount", "FREE");
 			} else {
 				map.put("amount", nf2decimal.format(info.getWorkShopItemFee()));
+				map.put("totalAmount", nf2decimal.format(info.getWorkShopItemFee()));
 			}
 			
 			l.add(map);
 		}
 		
-		if(info.getNumExtraBanquet() > 0) {
-			map = new HashMap<String, Object>();
-			map.put("no", i++);
-			map.put("line", info.getNumExtraBanquet() + " Extra Banquet @80 USD each");
-			map.put("amount", nf2decimal.format(info.getExtraBanquetFee()));
-			
-			l.add(map);
-		}
 		
-		if(info.getNumExtraCD() > 0) {
 			map = new HashMap<String, Object>();
 			map.put("no", i++);
-			map.put("line", info.getNumExtraCD() + " Extra CD @50 USD each");
-			map.put("amount", nf2decimal.format(info.getExtraCDFee()));
+			map.put("line", "Extra Banquet");
+			map.put("quantity", info.getNumExtraBanquet());
+			map.put("amount", "80.00");
+			map.put("totalAmount", nf2decimal.format(info.getExtraBanquetFee()));
 			
 			l.add(map);
-		}
+		
+		
+		
+			map = new HashMap<String, Object>();
+			map.put("no", i++);
+			map.put("line", "Extra CD");
+			map.put("quantity", info.getNumExtraCD());
+			map.put("amount", "50.00");
+			map.put("totalAmount", nf2decimal.format(info.getExtraCDFee()));
+			
+			l.add(map);
+		
 		
 		for(;i<12;i++) {
 			// just fill to 12 line
@@ -499,6 +585,8 @@ public class RegistrationInfo implements Serializable {
 			map.put("no", null);
 			map.put("line", null);
 			map.put("amount", null);
+			map.put("totalAmount", null);
+			map.put("quantity", null);
 			
 			l.add(map);
 		}

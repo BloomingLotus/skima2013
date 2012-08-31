@@ -39,6 +39,17 @@ public class JasperReportController {
 		return "simpleReport";
 	}
 	
+	@RequestMapping(value="/admin/BlankReceipt")
+	public String blankReport(Model model) {
+		
+		
+		
+		model.addAttribute("list", RegistrationInfo.getBlankLineItemReceipt());
+		
+
+		return "blankReport";
+	}
+	
 	@RequestMapping(value="/admin/Receipt/{refCode}")
 	public String getReceipt(@PathVariable String refCode, Model model) {
 		Person p = registrationService.findPersonByRegistrationInfoRefCode(refCode);

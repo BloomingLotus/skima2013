@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div style="text-align: right;">
+<a class="btn btn-warning" target="_blank" href="<c:url value='/admin/BlankReceipt'/>"> Print Blank Receipt</a>
 <a class="btn btn-primary" href="<c:url value='/skimaAdmin/allRegisters/ALL?index=0'/>"> Basic Admin Page</a>
 <a class="btn btn-primary" href="<c:url value='/logout'/>">Admin Logout</a>
 </div>
