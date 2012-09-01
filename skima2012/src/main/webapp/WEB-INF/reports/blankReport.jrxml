@@ -16,7 +16,6 @@
 	<field name="amount" class="java.lang.String"/>
 	<field name="quantity" class="java.lang.Integer"/>
 	<field name="checkBox" class="java.lang.Boolean"/>
-	<field name="checkMark" class="java.lang.Boolean"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -47,25 +46,23 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 				</textElement>
 				<text><![CDATA[ORIGINAL RECEIPT]]></text>
 			</staticText>
-			<textField pattern="">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement uuid="18d90190-0da1-46d6-9cd6-59b5b454257d" x="30" y="153" width="328" height="14"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{PERSON}.getFullName()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement uuid="b5886515-1152-4a41-93a3-41e4a580f6be" x="30" y="173" width="454" height="76"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{PERSON}.getBillingAddressString()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="973df7d0-8281-45b9-a7a9-ae4f88e79d9c" x="380" y="123" width="150" height="15"/>
+				<reportElement uuid="973df7d0-8281-45b9-a7a9-ae4f88e79d9c" x="380" y="123" width="174" height="15"/>
 				<textElement/>
-				<textFieldExpression><![CDATA["Receipt Date: " + $P{PERSON}.getRegistrationInfo().getFormatReceiptDate()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Receipt Date:           September 2012"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="ec058c70-752c-49ce-96f9-f3ac226e6749" x="380" y="138" width="150" height="15"/>
 				<textElement/>
-				<textFieldExpression><![CDATA["Receipt No. " + $P{PERSON}.getRegistrationInfo().getReceiptNo()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Receipt No. "]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="88f575ee-3b91-4dd2-9b45-6d78568b7b8d" x="5" y="153" width="25" height="14"/>
@@ -75,7 +72,7 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 			<textField>
 				<reportElement uuid="24e94580-4bd3-41fc-b4dd-26c01a5c9c7c" x="380" y="153" width="150" height="15"/>
 				<textElement/>
-				<textFieldExpression><![CDATA["Refer to Invoice No. "+$P{PERSON}.getRegistrationInfo().getRefCode()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Refer to Invoice No. "]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -174,17 +171,6 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<image>
-				<reportElement uuid="743331b6-80b5-4873-84fb-cefb3ebb08b0" x="45" y="1" width="15" height="14">
-					<printWhenExpression><![CDATA[$F{checkMark}]]></printWhenExpression>
-				</reportElement>
-				<imageExpression><![CDATA["graphics/checkmark.png"]]></imageExpression>
-			</image>
-			<rectangle>
-				<reportElement uuid="f5f8d420-18b5-44c3-b9af-2ce321f800fd" x="45" y="5" width="10" height="10">
-					<printWhenExpression><![CDATA[$F{checkBox}]]></printWhenExpression>
-				</reportElement>
-			</rectangle>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="e32ac330-56ba-42f6-976e-07fb2123d504" x="0" y="0" width="30" height="20"/>
 				<box>
@@ -230,12 +216,11 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement uuid="743331b6-80b5-4873-84fb-cefb3ebb08b0" x="45" y="1" width="15" height="14">
-					<printWhenExpression><![CDATA[$F{checkMark}]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="35ad0bbc-742f-4ba0-a349-ac96e466e584" x="47" y="5" width="10" height="10">
+					<printWhenExpression><![CDATA[$F{checkBox}]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA["graphics/checkmark.png"]]></imageExpression>
-			</image>
+			</rectangle>
 		</band>
 	</detail>
 	<columnFooter>
@@ -250,15 +235,14 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["TOTAL AMOUNT PAID = "+$P{PERSON}.getRegistrationInfo().getTotalFeeText()+" US Dollar"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["TOTAL AMOUNT PAID = ................................................................................................. US Dollar"]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement uuid="405572d4-dda1-4553-99cb-9a6018fd0f26" x="490" y="24" width="64" height="36"/>
 				<box rightPadding="10">
 					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{PERSON}.getRegistrationInfo().getTotalFeeFormat()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="e4bc4fab-5abc-4b8a-84e3-4b78ff608b3b" x="0" y="0" width="490" height="24"/>
@@ -282,7 +266,7 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 			<staticText>
 				<reportElement uuid="56477c8d-7085-44ba-9ff0-7ed3c300c609" x="123" y="114" width="90" height="20"/>
 				<textElement/>
-				<text><![CDATA[Money Transfer]]></text>
+				<text><![CDATA[Cash]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement uuid="35ad0bbc-742f-4ba0-a349-ac96e466e584" x="226" y="116" width="10" height="10"/>
@@ -292,18 +276,6 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 				<textElement/>
 				<text><![CDATA[Credit Card]]></text>
 			</staticText>
-			<image evaluationTime="Auto">
-				<reportElement uuid="7ef9c048-a676-4cbb-8349-1a98bac6a5e3" x="105" y="112" width="15" height="14" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[$P{PERSON}.getRegistrationInfo().isPayByMoneyTransfer()]]></printWhenExpression>
-				</reportElement>
-				<imageExpression><![CDATA["graphics/checkmark.png"]]></imageExpression>
-			</image>
-			<image evaluationTime="Auto">
-				<reportElement uuid="7ef9c048-a676-4cbb-8349-1a98bac6a5e3" key="" x="227" y="112" width="15" height="14">
-					<printWhenExpression><![CDATA[$P{PERSON}.getRegistrationInfo().isPayByCreditCard()]]></printWhenExpression>
-				</reportElement>
-				<imageExpression><![CDATA["graphics/checkmark.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement uuid="2ef41b36-1166-4bd8-98a7-ef40dca6d402" x="45" y="114" width="46" height="20"/>
 				<textElement/>
@@ -319,16 +291,8 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["("+$P{PERSON}.getRegistrationInfo().getTotalThaiFeeText()+" Thai Baht) - " +$P{PERSON}.getRegistrationInfo().getTotalThaiFeeFormat() + " THB"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["(.......................................................................................................................... THB)"]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement uuid="75696f58-51dd-4e38-b486-f2cbc1049337" x="398" y="128" width="91" height="97"/>
-				<imageExpression><![CDATA["graphics/Signature.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement uuid="df400ff6-7f11-4f2c-ae9c-112309bd17ed" x="450" y="116" width="87" height="93"/>
-				<imageExpression><![CDATA["graphics/tt.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement uuid="6e827aa2-45e5-42b0-80be-98209a23be0d" x="373" y="174" width="155" height="20"/>
 				<box>

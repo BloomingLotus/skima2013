@@ -533,53 +533,89 @@ public class RegistrationInfo implements Serializable {
 		RegistrationInfo info = this;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("no", i++);
-		map.put("line",  info.getRegistrationItemWebString());
-		map.put("quantity", 1);
-		map.put("amount", nf2decimal.format(info.getRegistrationItemFee()));
-		map.put("totalAmount", nf2decimal.format(info.getRegistrationItemFee()));
+		
+		map.put("no", 1);
+		map.put("line",  "      " +RegistrationItem.full.toString() + " / " + this.getRateString()  );
+		if(this.getRegistrationItem() == RegistrationItem.full) {
+			map.put("quantity", 1);
+			map.put("amount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("totalAmount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("checkBox", true);
+			map.put("checkMark", true);
+		} else {
+			map.put("quantity", null);
+			map.put("amount", null);
+			map.put("totalAmount", null);
+			map.put("checkBox", true);
+			map.put("checkMark", false);
+		}
 		
 		l.add(map);
 		
-		if(info.getWorkshopItem() != WorkshopItem.notSelected) {
-			map = new HashMap<String, Object>();
-			map.put("no", i++);
-			map.put("line", info.getWorkshopItemWebString());
+		map = new HashMap<String, Object>();
+		map.put("no", null);
+		map.put("line",  "      " +RegistrationItem.student.toString() + " / " + this.getRateString());
+		if(this.getRegistrationItem() == RegistrationItem.student) {
 			map.put("quantity", 1);
-			if(info.getWorkshopItem() == WorkshopItem.oneDay) {
-				map.put("amount", "");
-				map.put("totalAmount", "FREE");
-			} else {
-				map.put("amount", nf2decimal.format(info.getWorkShopItemFee()));
-				map.put("totalAmount", nf2decimal.format(info.getWorkShopItemFee()));
-			}
-			
-			l.add(map);
+			map.put("amount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("totalAmount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("checkBox", true);
+			map.put("checkMark", true);
+		} else {
+			map.put("quantity", null);
+			map.put("amount", null);
+			map.put("totalAmount", null);
+			map.put("checkBox", true);
+			map.put("checkMark", false);
+		}
+		l.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("no", null);
+		map.put("line",   "      " +RegistrationItem.participant.toString());
+		if(this.getRegistrationItem() == RegistrationItem.participant) {
+			map.put("quantity", 1);
+			map.put("amount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("totalAmount", nf2decimal.format(this.getRegistrationItemFee()));
+			map.put("checkBox", true);
+			map.put("checkMark", true);
+		} else {
+			map.put("quantity", null);
+			map.put("amount", null);
+			map.put("totalAmount", null);
+			map.put("checkBox", true);
+			map.put("checkMark", false);
 		}
 		
+		l.add(map);
+		
 		
 			map = new HashMap<String, Object>();
-			map.put("no", i++);
+			map.put("no", 2);
 			map.put("line", "Extra Banquet");
 			map.put("quantity", info.getNumExtraBanquet());
 			map.put("amount", "80.00");
 			map.put("totalAmount", nf2decimal.format(info.getExtraBanquetFee()));
+			map.put("checkBox", false);
+			map.put("checkMark", false);
 			
 			l.add(map);
 		
 		
 		
 			map = new HashMap<String, Object>();
-			map.put("no", i++);
+			map.put("no", 3);
 			map.put("line", "Extra CD");
 			map.put("quantity", info.getNumExtraCD());
 			map.put("amount", "50.00");
 			map.put("totalAmount", nf2decimal.format(info.getExtraCDFee()));
+			map.put("checkBox", false);
+			map.put("checkMark", false);
 			
 			l.add(map);
 		
 		
-		for(;i<12;i++) {
+		for(i=6;i<12;i++) {
 			// just fill to 12 line
 			map = new HashMap<String, Object>();
 			map.put("no", null);
@@ -587,6 +623,8 @@ public class RegistrationInfo implements Serializable {
 			map.put("amount", null);
 			map.put("totalAmount", null);
 			map.put("quantity", null);
+			map.put("checkBox", false);
+			map.put("checkMark", false);
 			
 			l.add(map);
 		}
