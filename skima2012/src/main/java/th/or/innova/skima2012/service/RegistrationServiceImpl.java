@@ -199,6 +199,7 @@ public class RegistrationServiceImpl implements registrationService {
 	            Map<String, Object> map = new HashMap<String, Object>();
 	            //map.put("list", p.getRegistrationInfo().getLineItemReceipt());
 				map.put("PERSON", p);
+				map.put("SHOW_SIGNATURE", true);
 				
 				AbstractJasperReportsView  view = new JasperReportsMultiFormatView();
 				view.setUrl("/WEB-INF/reports/simpleReport.jasper");

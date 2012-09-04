@@ -7,6 +7,7 @@
 	<import value="static net.sf.jasperreports.expressions.functions.MathFunctions.*"/>
 	<import value="static net.sf.jasperreports.expressions.functions.DateTimeFunctions.*"/>
 	<parameter name="PERSON" class="th.or.innova.skima2012.model.Person" isForPrompting="false"/>
+	<parameter name="SHOW_SIGNATURE" class="java.lang.Boolean" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -322,11 +323,15 @@ Thailand Tax Payer ID:   099 30000 87992]]></text>
 				<textFieldExpression><![CDATA["("+$P{PERSON}.getRegistrationInfo().getTotalThaiFeeText()+" Thai Baht) - " +$P{PERSON}.getRegistrationInfo().getTotalThaiFeeFormat() + " THB"]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement uuid="75696f58-51dd-4e38-b486-f2cbc1049337" x="398" y="128" width="91" height="97"/>
+				<reportElement uuid="75696f58-51dd-4e38-b486-f2cbc1049337" x="398" y="128" width="91" height="97">
+					<printWhenExpression><![CDATA[$P{SHOW_SIGNATURE}]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA["graphics/Signature.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement uuid="df400ff6-7f11-4f2c-ae9c-112309bd17ed" x="450" y="116" width="87" height="93"/>
+				<reportElement uuid="df400ff6-7f11-4f2c-ae9c-112309bd17ed" x="450" y="116" width="87" height="93">
+					<printWhenExpression><![CDATA[$P{SHOW_SIGNATURE}]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA["graphics/tt.png"]]></imageExpression>
 			</image>
 			<staticText>

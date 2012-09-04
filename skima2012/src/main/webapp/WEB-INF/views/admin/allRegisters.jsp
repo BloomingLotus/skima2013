@@ -106,7 +106,8 @@
 		<c:choose>
 			<c:when test="${p.registrationInfo.status == 'Paid'}">
 				<a href="#" class="btn" id="p-${p.registrationInfo.refCode}" onclick="submitMarkUnpaidForm('${p.registrationInfo.refCode}')">Mark Unpaid</a>
-				<br/><br/><a href="<c:url value='/admin/Receipt/${p.registrationInfo.refCode}'/>" class="btn btn-primary" target="_blank">PRINT RECEIPT</a>
+				<br/><br/><a href="<c:url value='/admin/Receipt/${p.registrationInfo.refCode}'/>" class="btn btn-primary" target="_blank">PRINT RECEIPT</a><br/>
+				<br/><a href="<c:url value='/admin/ReceiptNoSignature/${p.registrationInfo.refCode}'/>" class="btn btn-primary" target="_blank">PRINT RECEIPT NO SIGNATURE</a>
 				<c:set var="sendReceiptMsg">SEND RECEIPT</c:set>
 				<c:if test="${p.registrationInfo.receiptSent}">
 					<c:set var="sendReceiptMsg">SEND RECEIPT AGAIN</c:set>
@@ -276,6 +277,7 @@ function submitMarkPaidForm(refCode) {
 				tdBtn.empty();
 				tdBtn.append(unpaidBtn);
 				tdBtn.append('<br/><br/><a href="../Receipt/' + refCode +'" class="btn btn-primary" target="_blank">PRINT RECEIPT</a>');
+				tdBtn.append('<br/><a href="../ReceiptNoSignature/' + refCode +'" class="btn btn-primary" target="_blank">PRINT RECEIPT NO SIGNATURE</a>');
 				tdBtn.append('<br/><br/><a href="#" id="receiptSent-'+ refCode +'" onclick="sendReceipt(\'' + refCode + '\')" class="btn btn-primary">SEND RECEIPT</a>');
 				
 				// now we'll have to make this row unPaidCss

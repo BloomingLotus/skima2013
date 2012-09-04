@@ -56,6 +56,22 @@ public class JasperReportController {
 		
 		if(p != null) {
 			model.addAttribute("list", p.getRegistrationInfo().getLineItemReceipt());
+			model.addAttribute("SHOW_SIGNATURE", true);
+			model.addAttribute("PERSON", p);
+
+			return "simpleReport";
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="/admin/ReceiptNoSignature/{refCode}")
+	public String getReceiptNoSignature(@PathVariable String refCode, Model model) {
+		Person p = registrationService.findPersonByRegistrationInfoRefCode(refCode);
+		
+		if(p != null) {
+			model.addAttribute("list", p.getRegistrationInfo().getLineItemReceipt());
+			model.addAttribute("SHOW_SIGNATURE", false);
 			model.addAttribute("PERSON", p);
 
 			return "simpleReport";
