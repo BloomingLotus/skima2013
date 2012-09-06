@@ -32,7 +32,7 @@
 				<textElement>
 					<font fontName="SansSerif" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[The Innova Foundataion]]></text>
+				<text><![CDATA[The Innova Foundation]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="3414cea1-0796-4e09-b700-3686be9f603c" x="70" y="31" width="481" height="39"/>
